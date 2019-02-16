@@ -1,9 +1,9 @@
 public class KnightBoard{
 
 private int[][] board;
-private int[][] moves = {{-1,  2}, {1,   2}, 
-			 {-2,  1}, {-2, -1}, 
-			 {-1, -2}, {1,  -2}, 
+private int[][] moves = {{-1,  2}, {1,   2},
+			 {-2,  1}, {-2, -1},
+			 {-1, -2}, {1,  -2},
 			 {2,   1}, {2,  -1}
 			};
 
@@ -14,12 +14,28 @@ public KnightBoard(int rows, int cols){
 }
 
 public boolean placeKnight(int x, int y){
-	board[x][y] = currno;
-	currno++;
+	if (board[x][y] == 0){
+		board[x][y] = currno;
+		currno++;
+		return true;
+	}
 	return true;
 }
 
-//private class Tile{
-//	private int possibleMoves;
-//}
+public boolean removeKnight(int x, int y){
+	if (board[x][y] == 0){
+		return false;
+	}
+	board[x][y] = 0;
+	currno--;
+	return true;
+}
+
+
+private void solveHelp(){}
+
+
+public boolean solve(){
+	return true;
+}
 }
