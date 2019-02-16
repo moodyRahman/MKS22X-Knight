@@ -7,10 +7,16 @@ private int[][] moves = {{-1,  2}, {1,   2},
 			 {2,   1}, {2,  -1}
 			};
 
-int currno = 0;
+private int currno = 0;
+private int sizerow;
+private int sizecol;
+private int totalsquares;
 
 public KnightBoard(int rows, int cols){
 	board = new int[rows][cols];
+	sizerow = rows;
+	sizecol = cols;
+	totalsquares = sizerow * sizecol;
 }
 
 public boolean placeKnight(int x, int y){
@@ -32,7 +38,20 @@ public boolean removeKnight(int x, int y){
 }
 
 
-private void solveHelp(){}
+private boolean solveHelp(int x, int y){
+	if (currno >= totalsquares){
+		return true;
+	}
+	for (int ch = 0; ch < 8; ch++){
+		if(placeKnight(x, y)){
+			if (solveHelp(x + moves[ch][0], y + moves[ch][1])){
+				return true;
+			}
+			removeKnight(x, y);
+		}
+	}
+	return false;
+}
 
 
 public boolean solve(){
