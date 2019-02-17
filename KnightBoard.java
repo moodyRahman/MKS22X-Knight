@@ -28,7 +28,7 @@ public boolean placeKnight(int x, int y){
 		currno++;
 		return true;
 	}
-	return true;
+	return false;
 }
 
 public boolean removeKnight(int x, int y){
@@ -51,22 +51,26 @@ public void pieceTest(int x, int y){
 
 private boolean solveHelp(int x, int y){
 	if (currno >= totalsquares){
+		debug(x, y);
 		return true;
 	}
 	for (int ch = 0; ch < 8; ch++){
 		if(placeKnight(x, y)){
+			debug(x, y);
 			if (solveHelp(x + moves[ch][0], y + moves[ch][1])){
 				return true;
 			}
+			debug(x, y);
 			removeKnight(x, y);
 		}
 	}
 	return false;
 }
 
-private void debug(){
+private void debug(int x, int y){
 	System.out.println(Text.go(1,1));
 	System.out.println(this);Text.wait(1000); //adjust this delay
+	System.out.println(x + " " + y);
 }
 
 public String toString(){
@@ -87,8 +91,8 @@ public boolean solve(int startposx, int startposy){
 
 public static void main(String[] args) {
 	KnightBoard k = new KnightBoard(6, 6);
-	k.pieceTest(3, 3);
-	// k.solve(2, 2);
+	// k.pieceTest(3, 3);
+	k.solve(2, 2);
 	System.out.println(k);
 }
 }
