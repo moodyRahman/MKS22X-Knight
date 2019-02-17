@@ -32,9 +32,6 @@ public boolean placeKnight(int x, int y){
 }
 
 public boolean removeKnight(int x, int y){
-	if (x < 0 || x >= sizerow || y < 0 || y >= sizecol){
-		return false;
-	}
 	if (board[x][y] == 0){
 		return false;
 	}
@@ -44,7 +41,10 @@ public boolean removeKnight(int x, int y){
 }
 
 public void pieceTest(int x, int y){
-
+	board[x][y] = 1;
+	for (int ch = 0; ch < 8; ch++){
+		board[x + moves[ch][0]] [y + moves[ch][1]] = 1;
+	}
 }
 
 
@@ -63,6 +63,16 @@ private boolean solveHelp(int x, int y){
 	return false;
 }
 
+public String toString(){
+	String out = "";
+	for (int x = 0; x < sizerow; x++){
+		for (int y = 0; y < sizecol; y++){
+			out+= board[x][y];
+		}
+		out+= "\n";
+	}
+	return out;
+}
 
 public boolean solve(int startposx, int startposy){
 	return solveHelp(startposx, startposy);
