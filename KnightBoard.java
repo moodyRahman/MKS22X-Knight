@@ -43,7 +43,8 @@ public boolean removeKnight(int x, int y){
 public void pieceTest(int x, int y){
 	board[x][y] = 1;
 	for (int ch = 0; ch < 8; ch++){
-		board[x + moves[ch][0]] [y + moves[ch][1]] = 1;
+		currno++;
+		board[x + moves[ch][0]] [y + moves[ch][1]] = currno;
 	}
 }
 
@@ -68,6 +69,7 @@ public String toString(){
 	for (int x = 0; x < sizerow; x++){
 		for (int y = 0; y < sizecol; y++){
 			out+= board[x][y];
+			out += " ";
 		}
 		out+= "\n";
 	}
@@ -79,8 +81,9 @@ public boolean solve(int startposx, int startposy){
 }
 
 public static void main(String[] args) {
-	KnightBoard k = new KnightBoard(4, 4);
-	k.solve(2, 2);
+	KnightBoard k = new KnightBoard(6, 6);
+	k.pieceTest(3, 3);
+	// k.solve(2, 2);
 	System.out.println(k);
 }
 }
