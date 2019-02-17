@@ -7,7 +7,7 @@ private int[][] moves = {{-1,  2}, {1,   2},
 			 {2,   1}, {2,  -1}
 			};
 
-private int currno = 0;
+private int currno = 1;
 private int sizerow;
 private int sizecol;
 private int totalsquares;
@@ -20,7 +20,7 @@ public KnightBoard(int rows, int cols){
 }
 
 public boolean placeKnight(int x, int y){
-	if (x < 0 || x > sizerow || y < 0 || y > sizecol){
+	if (x < 0 || x >= sizerow || y < 0 || y >= sizecol){
 		return false;
 	}
 	if (board[x][y] == 0){
@@ -32,12 +32,19 @@ public boolean placeKnight(int x, int y){
 }
 
 public boolean removeKnight(int x, int y){
+	if (x < 0 || x >= sizerow || y < 0 || y >= sizecol){
+		return false;
+	}
 	if (board[x][y] == 0){
 		return false;
 	}
 	board[x][y] = 0;
 	currno--;
 	return true;
+}
+
+public void pieceTest(int x, int y){
+
 }
 
 
@@ -62,8 +69,8 @@ public boolean solve(int startposx, int startposy){
 }
 
 public static void main(String[] args) {
-	KnightBoard k = new KnightBoard(5, 5);
-	k.solve(0, 0);
+	KnightBoard k = new KnightBoard(4, 4);
+	k.solve(2, 2);
 	System.out.println(k);
 }
 }
