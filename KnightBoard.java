@@ -20,6 +20,9 @@ public KnightBoard(int rows, int cols){
 }
 
 public boolean placeKnight(int x, int y){
+	if (x < 0 || x > sizerow || y < 0 || y > sizecol){
+		return false;
+	}
 	if (board[x][y] == 0){
 		board[x][y] = currno;
 		currno++;
@@ -56,5 +59,11 @@ private boolean solveHelp(int x, int y){
 
 public boolean solve(int startposx, int startposy){
 	return solveHelp(startposx, startposy);
+}
+
+public static void main(String[] args) {
+	KnightBoard k = new KnightBoard(5, 5);
+	k.solve(0, 0);
+	System.out.println(k);
 }
 }
