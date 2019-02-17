@@ -56,12 +56,12 @@ private boolean solveHelp(int x, int y){
 	}
 	for (int ch = 0; ch < 8; ch++){
 		if(placeKnight(x, y)){
-			debug(x, y);
+			// debug(x, y);
 			if (solveHelp(x + moves[ch][0], y + moves[ch][1])){
 				return true;
 			}
-			debug(x, y);
 			removeKnight(x, y);
+			// debug(x, y);
 		}
 	}
 	return false;
@@ -69,16 +69,22 @@ private boolean solveHelp(int x, int y){
 
 private void debug(int x, int y){
 	System.out.println(Text.go(1,1));
-	System.out.println(this);Text.wait(1000); //adjust this delay
+	System.out.println(this);
 	System.out.println(x + " " + y);
+	Text.wait(100); //adjust this delay
 }
 
 public String toString(){
 	String out = "";
 	for (int x = 0; x < sizerow; x++){
 		for (int y = 0; y < sizecol; y++){
-			out+= board[x][y];
-			out += " ";
+			if (board[x][y] <= 10){
+				out += "  ";
+				out += board[x][y];
+			}else{
+				out += " ";
+				out += board[x][y];
+			}
 		}
 		out+= "\n";
 	}
@@ -90,9 +96,9 @@ public boolean solve(int startposx, int startposy){
 }
 
 public static void main(String[] args) {
-	KnightBoard k = new KnightBoard(6, 6);
+	KnightBoard k = new KnightBoard(4, 4);
 	// k.pieceTest(3, 3);
-	k.solve(2, 2);
-	System.out.println(k);
+	k.solve(0, 0);
+	// System.out.println(k);
 }
 }
