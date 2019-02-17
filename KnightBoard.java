@@ -54,7 +54,7 @@ private boolean solveHelp(int x, int y){
 }
 
 
-public boolean solve(){
-	return true;
+public boolean solve(int startposx, int startposy){
+	return solveHelp(startposx, startposy);
 }
 }
