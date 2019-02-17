@@ -64,6 +64,11 @@ private boolean solveHelp(int x, int y){
 	return false;
 }
 
+private void debug(){
+	System.out.println(Text.go(1,1));
+	System.out.println(this);Text.wait(1000); //adjust this delay
+}
+
 public String toString(){
 	String out = "";
 	for (int x = 0; x < sizerow; x++){
