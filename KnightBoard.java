@@ -11,6 +11,7 @@ public int currno = 1;
 private int sizerow;
 private int sizecol;
 private int totalsquares;
+private int solutions;
 
 public KnightBoard(int rows, int cols){
 	board = new int[rows][cols];
@@ -60,12 +61,21 @@ private boolean solveHelp(int x, int y){
 	return false;
 }
 
-private void debug(int x, int y){
+private void debug(){
 	System.out.println(Text.go(1,1));
 	System.out.println(this);
-	System.out.println(x + " " + y);
+	// System.out.println(x + " " + y);
 	System.out.println(currno);
-	Text.wait(00); //adjust this delay
+	System.out.println(solved());
+	if (solved()){
+		Text.wait(5000);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println("WE DID IT BOYS");
+	}
+	System.out.println(solutions);
+	Text.wait(5); //adjust this delay
 }
 
 public String toString(){
@@ -96,12 +106,33 @@ public boolean solve(int startposx, int startposy){
 	return solveHelp(startposx, startposy);
 }
 
+public int counthelp(int x, int y){
+	if (solved()){
+		solutions++;
+		return 1;
+	}
+	for (int ch = 0; ch < 8; ch++){
+		debug();
+		if (placeKnight(x, y)){
+			counthelp(x + moves[ch][0], y + moves[ch][1]);
+			removeKnight(x, y);
+		}
+
+	}
+	return solutions;
+}
+
+public int countSolutions(int x, int y){
+	return counthelp(x, y);
+}
+
 public static void main(String[] args) {
-	KnightBoard k = new KnightBoard(5, 5);
+	KnightBoard k = new KnightBoard(3, 4);
 	// k.pieceTest(3, 3);
-	k.solve(0, 0);
+	// k.solve(0, 0);
 	// k.placeKnight(0, 0);
 	System.out.println(k);
-	System.out.println(k.currno);
+	System.out.println(k.countSolutions(0, 0));
+	// System.out.println(k.currno);
 }
 }
