@@ -42,15 +42,6 @@ public boolean removeKnight(int x, int y){
 	return true;
 }
 
-public void pieceTest(int x, int y){
-	board[x][y] = 1;
-	for (int ch = 0; ch < 8; ch++){
-		currno++;
-		board[x + moves[ch][0]] [y + moves[ch][1]] = currno;
-	}
-}
-
-
 private boolean solveHelp(int x, int y){
 	if (solved()){
 		// debug(x, y);
@@ -94,7 +85,7 @@ public String toString(){
 	return out;
 }
 
-public boolean solved(){
+private boolean solved(){
 	if (totalsquares == 0){
 		return true;
 	}
