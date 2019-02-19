@@ -26,6 +26,7 @@ public boolean placeKnight(int x, int y){
 	if (board[x][y] == 0){
 		board[x][y] = currno;
 		currno++;
+		totalsquares--;
 		return true;
 	}
 	return false;
@@ -37,6 +38,7 @@ public boolean removeKnight(int x, int y){
 	}
 	board[x][y] = 0;
 	currno--;
+	totalsquares++;
 	return true;
 }
 
@@ -93,14 +95,10 @@ public String toString(){
 }
 
 public boolean solved(){
-	for (int x = 0; x < sizerow; x++){
-		for (int y = 0; y < sizecol; y++){
-			if (board[x][y] == 0){
-				return false;
-			}
-		}
+	if (totalsquares == 0){
+		return true;
 	}
-	return true;
+	return false;
 }
 
 public boolean solve(int startposx, int startposy){
