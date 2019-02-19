@@ -67,15 +67,15 @@ private void debug(){
 	// System.out.println(x + " " + y);
 	System.out.println(currno);
 	System.out.println(solved());
-	if (solved()){
-		Text.wait(5000);
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println("WE DID IT BOYS");
-	}
+	// if (solved()){
+	// 	Text.wait(5000);
+	// 	System.out.println();
+	// 	System.out.println();
+	// 	System.out.println();
+	// 	System.out.println("WE DID IT BOYS");
+	// }
 	System.out.println(solutions);
-	Text.wait(5); //adjust this delay
+	Text.wait(500); //adjust this delay
 }
 
 public String toString(){
@@ -108,11 +108,12 @@ public boolean solve(int startposx, int startposy){
 
 public int counthelp(int x, int y){
 	if (solved()){
+		debug();
 		solutions++;
 		return 1;
 	}
 	for (int ch = 0; ch < 8; ch++){
-		debug();
+		// debug();
 		if (placeKnight(x, y)){
 			counthelp(x + moves[ch][0], y + moves[ch][1]);
 			removeKnight(x, y);
@@ -127,7 +128,7 @@ public int countSolutions(int x, int y){
 }
 
 public static void main(String[] args) {
-	KnightBoard k = new KnightBoard(3, 4);
+	KnightBoard k = new KnightBoard(6, 6);
 	// k.pieceTest(3, 3);
 	// k.solve(0, 0);
 	// k.placeKnight(0, 0);
