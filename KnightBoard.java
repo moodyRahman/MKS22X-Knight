@@ -7,7 +7,7 @@ private int[][] moves = {{-1,  2}, {1,   2},
 			 {2,   1}, {2,  -1}
 			};
 
-private int currno = 1;
+public int currno = 1;
 private int sizerow;
 private int sizecol;
 private int totalsquares;
@@ -50,8 +50,8 @@ public void pieceTest(int x, int y){
 
 
 private boolean solveHelp(int x, int y){
-	if (currno >= totalsquares){
-		debug(x, y);
+	if (solved()){
+		// debug(x, y);
 		return true;
 	}
 	for (int ch = 0; ch < 8; ch++){
@@ -71,7 +71,8 @@ private void debug(int x, int y){
 	System.out.println(Text.go(1,1));
 	System.out.println(this);
 	System.out.println(x + " " + y);
-	Text.wait(100); //adjust this delay
+	System.out.println(currno);
+	Text.wait(00); //adjust this delay
 }
 
 public String toString(){
@@ -91,14 +92,27 @@ public String toString(){
 	return out;
 }
 
+public boolean solved(){
+	for (int x = 0; x < sizerow; x++){
+		for (int y = 0; y < sizecol; y++){
+			if (board[x][y] == 0){
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
 public boolean solve(int startposx, int startposy){
 	return solveHelp(startposx, startposy);
 }
 
 public static void main(String[] args) {
-	KnightBoard k = new KnightBoard(4, 4);
+	KnightBoard k = new KnightBoard(5, 5);
 	// k.pieceTest(3, 3);
 	k.solve(0, 0);
-	// System.out.println(k);
+	// k.placeKnight(0, 0);
+	System.out.println(k);
+	System.out.println(k.currno);
 }
 }
